@@ -1,0 +1,20 @@
+<div ng-init="init()">
+    <div class="drug-patient-tree" ui-tree="tree" data-drag-enabled="false" ng-cloak ng-show="patients.length > 0">
+        <ol ui-tree-nodes ng-model="patients">
+            <li ng-repeat="patient in patients" ui-tree-node ng-class="{'active-node': isActive(patient)}">
+                <div class="patient-panel" ng-class="{'active': isActive(patient)}" ng-click="showDetail(this)">
+                    <i class="patient-icon fa fa-user"></i>
+                    <span class="patient-name">{{ patient.name }}</span>
+                    <i class="patient-collapse fa fa-angle-{{ active(patients) ? 'up' : 'down' }}"></i>
+                </div>
+                <ol ui-tree-nodes ng-model="patient.recipes" ng-show="isActive(patient)" class="recipe-area">
+                    <li ng-repeat="recipe in patient.recipes" ui-tree-node class="recipe-panel" ng-click="select(this)">
+                        <span class="fa fa-{{ isSelected(recipe) ? 'check-' : '' }}square-o"></span>
+                        {{ recipe.id }}
+                    </li>
+                </ol>
+            </li>
+        </ol>
+    </div>
+</div>
+

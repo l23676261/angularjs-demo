@@ -1,0 +1,61 @@
+<div class="drug-wrap" ng-init="init()">
+    <div class="drug-search-bar">
+        <div class="drug-search-bar-header">
+            <button type="button" class="drug-search-bar-reload" ng-click="reload()">
+                <i class="fa fa-refresh"></i>{{ 'BUTTON_RELOAD' | translate }}
+            </button>
+        </div>
+        <div class="drug-search-bar-content">
+            <div class="drug-search-patient-area"
+                 search-patient
+                 rules="activeRules"
+                 search="search"
+                 clear="clear"
+                 switch-key="{{ switchKey ? switchKey : 'F1' }}"></div>
+            <div class="drug-search-bar-tree">
+                <div class="drug-search-bar-tab">
+                    <ul>
+                        <li ng-class="{active: currentTab === 'wait'}" ng-click="openTab('wait')">
+                            <a class="tab-item">{{ 'DIS_TAB_WAIT' | translate }}</a>
+                        </li>
+                        <li ng-class="{active: currentTab === 'sent'}" ng-click="openTab('sent')">
+                            <a class="tab-item">{{ 'DIS_TAB_SENT' | translate }}</a>
+                        </li>
+                        <li ng-class="{active: currentTab === 'later'}" ng-click="openTab('later')">
+                            <a class="tab-item">{{ 'DIS_TAB_DELAY' | translate }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div ui-view class="drug-search-bar-tree-view"></div>
+            </div>
+        </div>
+    </div>
+    <div class="drug-content">
+        <div class="drug-content-menu">
+            <ul>
+                <li><a class="drug-cotent-menu-item" ng-click="confirmRecipes()">
+                    <i class="fa fa-check-circle-o"></i> {{ 'DIS_BUTTON_CONFIRM' | translate }}
+                </a></li>
+                <li><a class="drug-cotent-menu-item" ng-click="delayRecipes()">
+                    <i class="fa fa-clock-o"></i>{{ 'DIS_BUTTON_DELAY' | translate }}
+                </a></li>
+                <li><a class="drug-cotent-menu-item" ng-click="cancelRecipes()">
+                    <i class="fa fa-close"></i>{{ 'DIS_BUTTON_CANCEL' | translate }}
+                </a></li>
+                <li>
+                    <a class="drug-cotent-menu-item" ng-click="pauseReload()">
+                        <i class="fa fa-stop-circle-o"></i>
+                        {{ (pause ? 'DIS_BUTTON_STOPPED' : 'DIS_BUTTON_UNSTOPPED') | translate }}
+                    </a>
+                </li>
+                <li><a class="drug-cotent-menu-item" ng-click="print()">
+                    <i class="fa fa-print"></i>{{ 'DIS_BUTTON_PRINT' | translate }}
+                </a></li>
+            </ul>
+        </div>
+        <div class="drug-content-info"
+             recipe-detail
+             patient="currentPatient"
+             selected="selectedRecipes"></div>
+    </div>
+</div>

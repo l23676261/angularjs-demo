@@ -1,0 +1,16 @@
+<div class="search-patient">
+    <div class="search-rule-text">
+        <span class="search-rule-name">{{ current.name }}</span>
+        <span class="search-rule-tip">
+            <span class="search-rule-hotkey">{{ 'TEXT_PUSH_KEY_SWITCH' | translate: {key: switchKey} }}</span>
+        </span>
+    </div>
+    <div class="search-rule-input">
+        <!--<sys-input data="searchValue" placeholder="按 enter键 搜索" class="search-rule-input-enter"></sys-input>-->
+        <input class="search-rule-input-enter"
+               name="searchValue"
+               type="text" placeholder="{{ 'TEXT_PUSH_KEY_SEARCH' | translate: {key: 'enter'} }}"
+               ng-model="searchValue"/>
+        <i class="search-rule-input-icon fa fa-search" ng-click="searchInfo()"></i>
+    </div>
+</div>

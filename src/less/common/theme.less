@@ -1,0 +1,140 @@
+@import "var";
+//包含外围
+.sys-layout {
+
+}
+//头部导航
+.sys-nav{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: @base-zIndex + 101;
+}
+//头部
+.sys-header{
+    height: @header-height;
+    background: url("@{base-path}/public/topbg.jpg") no-repeat center;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+    padding: 0 20px;
+    //logo 区域
+    .logo{
+        display: block;
+        height: @header-logo-height;
+        width: @header-logo-width;
+        background: url("@{base-path}/public/neusoft-logo.png") no-repeat;
+        margin-top: 10px;
+        .M-transition;
+        &:hover{
+            margin-top: 20px;
+        }
+    }
+    //帘部
+    .curtain{
+        .M-line-center(@header-curtain-height);
+        width: @header-curtain-width;
+        background: url("@{base-path}/public/curtain.png");
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin-left: -@header-curtain-width/2;
+        text-align: center;
+        color: @color-blue;
+        font-weight: bold;
+    }
+    //操作区
+    .operation{
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: @header-height;
+        width: 150px;
+    }
+}
+//导航
+.sys-nav-bar{
+    margin-top: -35px;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    //一级导航
+    .top{
+        @_height: 35px;
+        height: @_height;
+        .side-bar-top{
+            .side-bar-item{
+                display: inline-block;
+                .M-line-center(@_height);
+                a{
+                    color: #D7EFF3;
+                    display: block;
+                    padding: 0 15px;
+                    overflow: hidden;
+                    .M-transition;
+                    .M-border-radius(5px, 5px);
+                    &.active{
+                        background-color: #ECECEC;
+                        color: darken(@color-blue, 10%);
+                        font-weight: bold;
+                        &:hover{
+                            color: darken(@color-blue, 10%);
+                        }
+                    }
+                    &:hover{
+                        color: @color-white;
+                    }
+                }
+            }
+        }
+    }
+    //二级导航
+    .bottom{
+        @_height : 40px;
+        @_padding: 7px;
+        background: #ECECEC;
+        height: @_height;
+        border-bottom: 1px solid #DADADA;
+        text-align: left;
+        padding: @_padding 10px 0;
+        .side-bar-bottom{
+            .side-bar-item{
+                float: left;
+                .M-line-center(@_height - @_padding);
+                a{
+                    display: block;
+                    color: #666;
+                    padding: 0 15px;
+                    .M-border-radius(5px, 5px);
+                    &.active{
+                        border: 1px solid #ccc;
+                        background: #F8F8F8;
+                    }
+                }
+            }
+        }
+    }
+}
+//底部
+.sys-footer{
+    background: #E8E8E8;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-top: 1px solid #CCCACB;
+    color: #666;
+    z-index: @base-zIndex + 101;
+    padding-left: @form-left-width;
+    padding-right: 15px;
+    .M-line-center(@footer-height);
+    font-size: 12px;
+    a{
+        color: #666;
+        &:hover{
+            text-decoration: underline;
+            color: lighten(@color-blue, 10%);
+        }
+    }
+}

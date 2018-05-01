@@ -1,0 +1,295 @@
+@import "../common/var";
+@height-standard-header-line: 40px;
+@height-search-patient: 70px;
+@width-sidebar: 240px;
+@width-padding-1: 10px;
+@width-padding-2: 20px;
+@font-size-normal: 16px;
+@color-border-grey: #dadada;
+@color-button-orange: #e66150;
+@color-header-grey: #ececec;
+@color-tip-grey: #bbbbbb;
+@color-background-grey: #f8f8f8;
+@color-background-light-blue: #f8fefe;
+@color-disabled-grey: #a8a8a8;
+@border-standard: 1px solid @color-border-grey;
+
+.M-position-absolute (@top: 0, @left: 0, @right: 0, @bottom: 0, @zIndex: 1) {
+    position: absolute; top: @top; left: @left; right: @right; bottom: @bottom; z-index: @zIndex;
+}
+.M-click (@icon: pointer) {
+    cursor: @icon;
+}
+
+.drug-wrap {
+    .M-position-fixed(@header-height, 0, 0, @footer-height);
+    overflow: hidden;
+
+    .drug-search-bar {
+        width: @width-sidebar;
+        border-right: @border-standard;
+        .M-position-fixed(@header-height, 0, 0, @footer-height);
+        .drug-search-bar-header {
+            width: 100%;
+            height: @height-standard-header-line;
+            .drug-search-bar-reload {
+                .M-click;
+                width: 100%;
+                height: 100%;
+                background-color: @color-header-grey;
+                color: @color-blue;
+            }
+        }
+        .drug-search-bar-content {
+            width: 100%;
+            .M-position-absolute(@height-standard-header-line, auto, auto, 0);
+            .drug-search-patient-area {
+                height: @height-search-patient;
+                background-color: @color-background-grey;
+                padding: 0 @width-padding-1;
+            }
+            .drug-search-bar-tab {
+                background-color: @color-background-grey;
+                height: @height-standard-header-line;
+                line-height: @height-standard-header-line - 1px;
+                padding: 0 @width-padding-1;
+                border-bottom: @border-standard;
+                li {
+                    float: left;
+                    &.active {
+                        font-weight: bold;
+                        background-color: @color-white;
+                        border-left: @border-standard;
+                        border-right: @border-standard;
+                        border-top: @border-standard;
+                    }
+                }
+                .tab-item {
+                    color: @color-black;
+                    padding: 0 @width-padding-1;
+                }
+            }
+            .drug-search-bar-tree-view {
+                .M-position-absolute(@height-standard-header-line + @height-search-patient);
+                width: 100%;
+                overflow-y: auto;
+                padding: @width-padding-1;
+                background-color: @color-white;
+            }
+        }
+    }
+    .drug-content {
+        .M-position-absolute;
+        margin-left: @width-sidebar;
+        .drug-content-menu {
+            overflow: hidden;
+            height: @height-standard-header-line;
+            background-color: @color-header-grey;
+            li {
+                //&:hover {
+                //    margin: 0;
+                //    background-color: @color-orange;
+                //    border: none;
+                //    line-height: @height-standard-header-line;
+                //    .drug-cotent-menu-item {
+                //        color: @color-white;
+                //    }
+                //}
+                width: 120px;
+                list-style: none;
+                float: left;
+                margin: 8px 0;
+                line-height: @height-standard-header-line - 16px;
+                border-right: 1px solid @color-blue;
+                .drug-cotent-menu-item {
+                    padding: 0 @width-padding-2;
+                    color: @color-blue;
+                }
+            }
+        }
+        .drug-content-info {
+            .M-position-absolute (@height-standard-header-line);
+            padding: 0 @width-padding-1;
+        }
+    }
+}
+.search-patient {
+    width: 100%;
+    height: @height-search-patient;
+    padding: @width-padding-1 0;
+    .search-rule-text {
+        padding-bottom: 5px;
+        .search-rule-name {
+            font-weight: bold;
+        }
+        .search-rule-tip {
+            color: @color-tip-grey;
+        }
+    }
+    .search-rule-input {
+        position: relative;
+        .search-rule-input-enter{
+            border: 1px solid @color-border-grey;
+            width: 100%;
+            height: 26px;
+            padding-right: @width-padding-2;
+        }
+        .search-rule-input-icon {
+            .M-click;
+            .M-position-absolute(0,auto,0,0);
+            height: 100%;
+            line-height: 100%;
+            margin-right: 0;
+            color: @color-orange;
+            font-size: @font-size-normal * 1.5;
+        }
+    }
+}
+.drug-patient-tree {
+    .active-node {
+        border: @border-standard;
+    }
+    .patient-panel {
+        position: relative;
+        .M-click;
+        margin-top: 2px;
+        height: @height-standard-header-line;
+        line-height: @height-standard-header-line;
+        background-color: @color-header-grey;
+        padding: 0 @width-padding-1;
+        &.active {
+            background-color: @color-white;
+            .patient-icon {
+                color: @color-blue;
+            }
+            .patient-name {
+                font-weight: bold;
+            }
+        }
+        .patient-icon {
+            &:hover {
+                color: @color-disabled-grey;
+            }
+            color: @color-disabled-grey;
+        }
+        .patient-collapse {
+            color: @color-disabled-grey;
+            .M-position-absolute(8px,auto,10px,auto);
+            font-size: 24px;
+        }
+    }
+    .recipe-area {
+        background-color: @color-background-grey;
+        padding-right: @width-padding-1;
+        .recipe-panel {
+            .M-click;
+            height: @height-standard-header-line * 0.75;
+            line-height: @height-standard-header-line * 0.75;
+            border-top: @border-standard;
+        }
+    }
+}
+.drug-recipe-info {
+    height: 100%;
+    width: 100%;
+    .text-bold {
+        font-weight: bold;
+    }
+    .drug-patient-detail {
+        height: @height-standard-header-line;
+        line-height: @height-standard-header-line;
+        font-size: @font-size-normal;
+        .detail-item {
+            padding-right: 40px;
+        }
+    }
+    .drug-recipe-details {
+        .M-position-absolute(@height-standard-header-line);
+        overflow-y: auto;
+        .drug-recipe-detail {
+            padding-bottom: @width-padding-1;
+            .drug-recipe-detail-header {
+                overflow: hidden;
+                position: relative;
+                border-top: @border-standard;
+                border-left: @border-standard;
+                border-right: @border-standard;
+                height: @height-standard-header-line;
+                line-height: @height-standard-header-line;
+                padding: 0 @width-padding-1;
+                background-color: @color-background-grey;
+                .detail-item {
+                    padding-right: @width-padding-2;
+                }
+                .drug-recipe-type {
+                    padding: 0 @font-size-normal * 0.5;
+                    border: @border-standard;
+                    margin-right: @font-size-normal * 0.5;
+                }
+                .drug-recipe-total-price {
+                    .M-position-absolute(auto,auto,60px,auto);
+                }
+            }
+            .drug-recipe-detail-table {
+                width: 100%;
+                border: @border-standard;
+                .M-text-center () {
+                    text-align: center;
+                }
+                thead {
+                    background-color: @color-background-light-blue;
+                }
+                tr {
+                    height: @height-standard-header-line * 0.75;
+                    line-height: @height-standard-header-line * 0.75;
+                }
+                th {
+                    font-weight: normal;
+                    border: @border-standard;
+                }
+                td {
+                    border: @border-standard;
+                    padding: 0 @width-padding-1;
+                }
+                .drug-table-column-group {
+                    width: 40px;
+                }
+                .drug-table-column-quantity {
+                    width: 100px;
+                    background-color: @color-background-light-blue;
+                    .M-text-center;
+                }
+                .drug-table-column-price {
+                    width: 80px;
+                    .M-text-center;
+                }
+                .drug-table-column-total {
+                    width: 80px;
+                    .M-text-center;
+                }
+            }
+        }
+    }
+}
+
+.confirm-dialog {
+    .confirm-message {
+        text-align: center;
+        font-size: @font-size-normal * 1.5;
+        padding-bottom: @width-padding-2;
+    }
+    .confirm-dialog-buttons {
+        text-align: right;
+        button {
+            .M-click;
+            //&:hover {
+            //    background-color: @color-orange;
+            //    color: @color-white;
+            //}
+            color: @color-blue;
+            background-color: @color-white;
+            border: @border-standard;
+            padding: @width-padding-1 @width-padding-1;
+        }
+    }
+}

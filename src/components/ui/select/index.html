@@ -1,0 +1,13 @@
+<div class="sys-select sys-tab-index" ng-class="{'open': select_.isOpen, 'required': select_.isRequire}">
+    <div class="content">
+        <span class="name" ng-bind="activeData.name"></span>
+        <span class="arrow">
+            <i class="fa fa-angle-down"></i>
+        </span>
+    </div>
+    <div class="data-list">
+        <ul>
+            <li class="item" ng-class="{'active': item.code === select_.hoverData.code}" ng-repeat="(index, item) in data" ng-bind="item.name" ng-click="select_.toggleActive(item, index)"></li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+#sys-message{
+    position: fixed;
+    top: 25%;
+    width: 300px;
+    left: 50%;
+    margin-left: -150px;
+    z-index: 99999;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 5px;
+    opacity: 1;
+    &.success{
+        background-color: #43B85B;
+    }
+    &.error{
+        background-color: #bd443c;
+    }
+    &.hide{
+        display: none;
+    }
+    animation: message linear .5s;
+}
+@keyframes message {
+    from{
+        opacity: 0;
+        top: 20%;
+    }
+    to{
+        opacity: 1;
+        top: 25%;
+    }
+}
+
+

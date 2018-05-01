@@ -1,0 +1,19 @@
+<div class="sys-search-input sys-tab-index" ng-class="{'open': this_.isOpen, 'required': this_.isRequire}">
+    <div class="content">
+        <span class="name" ng-bind="activeData.name"></span>
+        <span class="arrow">
+            <i class="fa fa-angle-down"></i>
+        </span>
+    </div>
+    <div class="data-list">
+        <div class="search">
+            <input type="text" class="input" autocomplete="off" ng-model="searchValue" placeholder="{{this_.placeholder}}">
+            <i class="fa fa-search"></i>
+        </div>
+        <ul>
+            <li class="item" ng-class="{'active': item.code === this_.hoverData.code, 'disabled': item.limitCount === item.registedCount}" ng-repeat="(index, item) in data | filter: {'code': searchValue}" ng-click="this_.toggleActive(item, index)">
+                <span ng-bind="item.name"></span>
+            </li>
+        </ul>
+    </div>
+</div>
